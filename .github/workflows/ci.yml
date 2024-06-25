@@ -1,0 +1,16 @@
+name: Use Reusable Docker Build Workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+jobs:
+  call-reusable-workflow:
+    uses: amanverma678/hello-world/.github/workflows/shared.yml@main
+    with:
+      docker_repo_dev: 'amanvermaclouddrove/dev'
+      docker_repo_prod: 'amanvermaclouddrove/prod'
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
